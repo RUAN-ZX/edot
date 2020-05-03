@@ -5,8 +5,16 @@ import 'views/me/me.dart';
 import 'views/record/record.dart';
 
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/widgets.dart';
 
-main(List<String> args) => edot();
+
+
+///单行实现
+main() => runApp(edot());
+
 
 
 class edot extends StatelessWidget {
@@ -37,13 +45,26 @@ class _MyStackPageState extends State<MyStackPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+//      appBar: AppBar(
+//            shape: BoxShape.rectangle,
+//        title: Center(
+//          child:Text(
+//            "I am the bar at the beginning.",
+//            style: TextStyle(
+//              fontSize: 15,
+//              color: Colors.amberAccent,
+//            ),
+//          ),
+//        ),
+//      ),
       body: IndexedStack(
         index: _currentIndex,
         children: <Widget>[
-//          Home(),
-//          Subject(),
-//          Group(),
-//          Mall(),
+          record(),
+          discover(),
+          exercise(),
+          me(),
+
 //          Profile()
         ],
       ),
@@ -55,7 +76,7 @@ class _MyStackPageState extends State<MyStackPage> {
         items: [
           createItem("record", "记录"),
           createItem("discover", "发现"),
-          createItem("exercise", "锻炼"),
+          createItem("exercise", "训练"),
           createItem("me", "我的"),
         ],
         onTap: (index) {
