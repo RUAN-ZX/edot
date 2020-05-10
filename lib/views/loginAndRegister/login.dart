@@ -1,23 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class login extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: "易点健身",
-        theme: ThemeData(
-          primaryColor: Colors.lightBlueAccent,
-        ),
-        home:
-        Scaffold(
-//          appBar: AppBar(
-//            title: Text("login"),
-//          ),
-          body: LoginWidget(),
-        ));
-  }
-}
 
 class LoginWidget extends StatefulWidget {
   @override
@@ -37,6 +20,27 @@ class LoginWidgetState extends State<LoginWidget> {
       child: Center(
         child: ListView(
           children: <Widget>[
+              Padding(
+                padding: EdgeInsets.fromLTRB(80, 10, 80, 10),
+                child:
+                  ClipOval(
+                    child: Image.network(
+                      'http://b-ssl.duitang.com/uploads/item/201612/05/20161205085151_AGRej.jpeg',
+                      fit: BoxFit.cover,
+//                      width: 30,
+                    ),
+                  ),
+
+              ),
+
+//            AspectRatio(
+//              aspectRatio: 2.0/1.0,
+//              child: CircleAvatar(
+//                backgroundImage: NetworkImage('http://b-ssl.duitang.com/uploads/item/201612/05/20161205085151_AGRej.jpeg'),
+//              )
+//
+
+
             TextFormField(
               onSaved: (value) => this.username = value,
               validator: (value) {
@@ -81,13 +85,14 @@ class LoginWidgetState extends State<LoginWidget> {
 //                color： Colors.lightBlueAccent,
                 color: Colors.lightBlueAccent,
                 child: Text(
-                  "register",
+                  "登录",
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
                 onPressed: () {
                   key.currentState.save();
                   key.currentState.validate();
                   print("username: $username \n password: $userPassword");
+//                  Navigator.push(context, route);
                 },
               ),
             ),

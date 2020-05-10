@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 
-import 'views/loginAndRegister/login.dart';
-import 'views/loginAndRegister/register.dart';
+import 'views/loginAndRegister/index.dart';
+//import 'views/loginAndRegister/register.dart';
 
 
 ///单行实现
-main() => runApp(login());
+main() => runApp(index());
 
 
 
