@@ -1,6 +1,7 @@
+import 'package:edot/views/tab/tabR.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-
+import 'validation.dart';
 
 class LoginWidget extends StatefulWidget {
   @override
@@ -53,7 +54,7 @@ class LoginWidgetState extends State<LoginWidget> {
               decoration: InputDecoration(
 
                 icon: Icon(Icons.people),
-                labelText: "UserAlias",
+                labelText: "你的名字",
 //                focusColor: Colors.blue,
               ),
             ),
@@ -66,13 +67,13 @@ class LoginWidgetState extends State<LoginWidget> {
                 if (value.isEmpty) {
                   return "不能为空";
                 }
-//              else if(value)
+//                else if(value)
                 return null;
               },
               obscureText: true,
               decoration: InputDecoration(
                 icon: Icon(Icons.lock),
-                labelText: "UserPassword",
+                labelText: "你的密码",
               ),
             ),
             SizedBox(
@@ -92,6 +93,14 @@ class LoginWidgetState extends State<LoginWidget> {
                   key.currentState.save();
                   key.currentState.validate();
                   print("username: $username \n password: $userPassword");
+                  if(validation(username,userPassword)){
+                    /// 用户按返回的时候 就还会回到登录注册页面 非常不好
+//                    Navigator.pushNamed(context, '/tab');
+                    Navigator.of(context).pushAndRemoveUntil(
+                        new MaterialPageRoute(builder: (context) => new tab()),
+                            (route) => route == null
+                    );
+                  }
 //                  Navigator.push(context, route);
                 },
               ),

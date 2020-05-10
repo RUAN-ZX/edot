@@ -6,12 +6,7 @@ import 'register.dart';
 class index extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "易点健身",
-      theme: ThemeData(
-        primaryColor: Colors.lightBlueAccent,
-      ),
-      home: DefaultTabController(
+    return DefaultTabController(
           length: 2,
           child:  Scaffold(
             appBar: AppBar(
@@ -23,10 +18,15 @@ class index extends StatelessWidget {
 //              },
 //            ),
               title: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+//                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Expanded(
                     child:TabBar(
+                      indicatorColor: Colors.lightBlueAccent,
+                      labelColor: Colors.white,
+                      labelStyle: TextStyle(
+                        fontSize: 15,
+                      ),
                       tabs: <Widget>[
                         Tab(text: '登录',),
                         Tab(text: '注册',),
@@ -44,7 +44,6 @@ class index extends StatelessWidget {
               ],
             ),
           )
-      ),
     );
   }
 }

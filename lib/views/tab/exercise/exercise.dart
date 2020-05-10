@@ -9,18 +9,18 @@ class exercise extends StatelessWidget{
       appBar: AppBar(
 
       ),
-      body: discoverBody(),
+      body: exerciseBody(),
     );
   }
 
 }
 
-class discoverBody extends StatefulWidget {
+class exerciseBody extends StatefulWidget {
   @override
-  _discoverBodyState createState() => _discoverBodyState();
+  _exerciseBodyState createState() => _exerciseBodyState();
 }
 
-class _discoverBodyState extends State<discoverBody> {
+class _exerciseBodyState extends State<exerciseBody> {
   var result;
   @override
   void initState() {
