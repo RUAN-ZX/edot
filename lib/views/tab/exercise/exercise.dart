@@ -3,10 +3,13 @@ import 'package:edot/network/requestServer.dart';
 import 'package:dio/dio.dart';
 import 'listData.dart';
 
-
+import 'package:imagebutton/imagebutton.dart';
 class exercise extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
+    final size =MediaQuery.of(context).size;
+//    final width =size.width;
+//    final height =size.height;
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
@@ -20,39 +23,98 @@ class exercise extends StatelessWidget{
         title: Text("选择肌肉锻炼部分",style: TextStyle(color: Colors.white),),
         centerTitle: true,
       ),
-      body: exerciseBody(),
+      body: exerciseBody(size),
     );
   }
 
 }
 class exerciseBody extends StatelessWidget{
+  final size;
+  const exerciseBody(this.size);
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        new Stack(
+    return Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(15, 15, 10, 10),
+        child:Row(
           children: <Widget>[
-            new Image.asset("asset/images/back/b.png",),
-            new Positioned(
-              left:0.0,
-              right: 0.0,
-              top: 0.0,
-              child:new Text(
-                "没有做不到的只有想不到的",
-                style: new TextStyle(
-                color: Colors.red,
-                fontSize: 20.0,
-                fontFamily: "serif"
+            Expanded(
+              child: new Stack(
+                children: <Widget>[
+//                  new Image.asset("asset/images/back/b.png",width: double.infinity,fit: BoxFit.cover,),
+                  new Positioned(
+                      left:0.0,
+                      right: 0.0,
+                      top: 0.0,
+                      child: ImageButton(
+                        children: <Widget>[],
+                        width: size.width/4,
+                        height: size.height/4,
+                        paddingTop: 5,
+                        pressedImage: Image.asset(
+                          "asset/images/back/b_back.png",
+                        ),
+                        unpressedImage: Image.asset("asset/images/back/b_back2.png"),
+                        onTap: () {
+                          print('test');
+                        },
+                      )
+                      )
+                  ]
+//                      Image.asset(,width: double.infinity,fit: BoxFit.cover,),,
+                ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+              child:SizedBox(
+                width: size.width/4,
+  //              height: 22,
+                child: new OutlineButton(
+                  borderSide:new BorderSide(color: Theme.of(context).primaryColor),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(5, 10, 5, 10),
+  //                  child: new Text('注册\n234\n234',style: new TextStyle(color: Theme.of(context).primaryColor),),
+                    child: RichText(
+                      text: TextSpan(
+  //                      text: '本人同意领取赠险并许可保险公司沟通赠险生效事宜,已阅读',
+                        style: TextStyle(color: Colors.black, fontSize: 13),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: '背阔肌\n',
+                              style:TextStyle(color: Color(0xFF008EFF), fontSize: 13,fontWeight: FontWeight.bold),
+  //                            recognizer: TapGestureRecognizer()
+  //                              ..onTap = () async {
+  //                                AgreementDialog.showActivityDialog(context);
+  //                              }
+                                ),
+                          TextSpan(
+                              text: 'latissimus dorsi位于腰背部和胸部后外侧皮下，为全身最大的阔肌，',
+                              style:TextStyle(color: Color(0xFF008EFF), fontSize: 13),
+  //                            recognizer: TapGestureRecognizer()
+  //                              ..onTap = () async {
+  //                                AgreementDialog.showSecurityDialog(context);
+  //                              }
+                            ),
+                        ],
+                      ),
+                    )
+                  ),
+                  onPressed: (){},
+                ),
               ),
-            )
-          ),
-        ],
-
+            ),
+        ]
     ),
-  ],
-);
+    );
+//            new Image.asset("asset/images/back/b.png",width: 140),
 
-}
+
+//        new ListView(
+//          children: <Widget>[
+//            Text("背阔肌"),
+//            Text("背阔肌简介"),
+//          ],
+//        ),
+  }
 }
 
 

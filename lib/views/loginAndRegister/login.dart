@@ -25,8 +25,8 @@ class LoginWidgetState extends State<LoginWidget> {
                 padding: EdgeInsets.fromLTRB(80, 10, 80, 10),
                 child:
                   ClipOval(
-                    child: Image.network(
-                      'http://b-ssl.duitang.com/uploads/item/201612/05/20161205085151_AGRej.jpeg',
+                    child: Image.asset(
+                      'asset/images/test.jpeg',
                       fit: BoxFit.cover,
 //                      width: 30,
                     ),
