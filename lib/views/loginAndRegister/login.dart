@@ -63,13 +63,13 @@ class LoginWidgetState extends State<LoginWidget> {
             ),
             TextFormField(
               onSaved: (value) => this.userPassword = value,
-              validator: (value) {
-                if (value.isEmpty) {
-                  return "不能为空";
-                }
+//              validator: (value) {
+//                if (value.isEmpty) {
+//                  return "不能为空";
+//                }
 //                else if(value)
-                return null;
-              },
+//                return null;
+//              },
               obscureText: true,
               decoration: InputDecoration(
                 icon: Icon(Icons.lock),
@@ -92,8 +92,9 @@ class LoginWidgetState extends State<LoginWidget> {
                 onPressed: () {
                   key.currentState.save();
                   key.currentState.validate();
-                  print("username: $username \n password: $userPassword");
+
                   if(validation(username,userPassword)){
+                    print("username: $username \n password: $userPassword");
                     /// 用户按返回的时候 就还会回到登录注册页面 非常不好
 //                    Navigator.pushNamed(context, '/tab');
                     Navigator.of(context).pushAndRemoveUntil(

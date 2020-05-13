@@ -1,5 +1,5 @@
 bool validation(username,userPassword){
-  if(username=='ryan'&&userPassword=='123456'){
+  if(username==''&&userPassword==''){
     return true;
   }
   else return false;
