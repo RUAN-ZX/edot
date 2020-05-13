@@ -51,10 +51,7 @@ flutter:
     - asset/images/front/2.0x/
     - asset/images/front/3.0x/
     - asset/images/front/4.0x/
-    - asset/images/icon/
-    - asset/images/icon/2.0x/
-    - asset/images/icon/3.0x/
-    - asset/images/icon/4.0x/
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

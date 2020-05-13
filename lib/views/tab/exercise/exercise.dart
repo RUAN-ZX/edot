@@ -26,26 +26,30 @@ class exercise extends StatelessWidget{
 
 }
 class exerciseBody extends StatelessWidget{
-@override
-Widget build(BuildContext context) {
-return new Center(
-child: new Stack(
-children: <Widget>[
-new Image.asset("assets/images/back/b.png"),
-new Positioned(
-left:85.0,
-right: 35.0,
-top: 55.0,
-child:new Text(
-"没有做不到的只有想不到的",
-style: new TextStyle(
-color: Colors.red,
-fontSize: 20.0,
-fontFamily: "serif"
-),
-)
-)],
-),
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        new Stack(
+          children: <Widget>[
+            new Image.asset("asset/images/back/b.png",),
+            new Positioned(
+              left:0.0,
+              right: 0.0,
+              top: 0.0,
+              child:new Text(
+                "没有做不到的只有想不到的",
+                style: new TextStyle(
+                color: Colors.red,
+                fontSize: 20.0,
+                fontFamily: "serif"
+              ),
+            )
+          ),
+        ],
+
+    ),
+  ],
 );
 
 }
