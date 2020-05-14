@@ -59,7 +59,7 @@ class _MyStackPageState extends State<MyStackPage> {
         children: <Widget>[
           record(),
           discover(),
-          exercise(),
+//          exercise(),
           me(),
 
 //          Profile()
@@ -81,9 +81,20 @@ class _MyStackPageState extends State<MyStackPage> {
           createItem(4, "我的"),
         ],
         onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
+          if(index==2){
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                  builder: (BuildContext context){
+                    return exercisePage();
+                  }
+              ),
+            );
+          }
+          else{
+            setState(() {
+              _currentIndex = index;
+            });
+          }
         },
       ),
 

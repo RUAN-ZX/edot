@@ -7,6 +7,8 @@ import 'package:edot/views/tab/exercise/exercise.dart';
 import 'package:edot/views/tab/me/me.dart';
 import 'package:edot/views/tab/record/record.dart';
 import 'package:edot/views/tab/tabR.dart';
+import 'package:edot/views/tab/exercise/test.dart';
+
 
 // loginAndRegister
 import 'package:edot/views/loginAndRegister/index.dart';
@@ -27,7 +29,6 @@ final routes={
   '/exercise':(context)=>exercise(),
   '/me':(context)=>me(),
   '/record':(context)=>record(),
-  '/test':(context)=>qwer(),
 };
 
 //固定写法

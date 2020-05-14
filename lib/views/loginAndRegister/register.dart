@@ -9,11 +9,12 @@ class RegisterState extends State<RegisterWidget> {
   GlobalKey<FormState> key = GlobalKey();
   String username;
   String userPassword;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:const EdgeInsets.all(20),
-      child:Form(
+      padding: const EdgeInsets.all(20),
+      child: Form(
         key: key,
         child: Center(
           child: ListView(
@@ -21,15 +22,15 @@ class RegisterState extends State<RegisterWidget> {
               Padding(
                 padding: EdgeInsets.fromLTRB(80, 10, 80, 10),
                 child:
+
                     /// 支持上传图片！！！
-                ClipOval(
-                  child: Image.network(
-                    'http://b-ssl.duitang.com/uploads/item/201612/05/20161205085151_AGRej.jpeg',
-                    fit: BoxFit.cover,
-//                      width: 30,
+                    ClipOval(
+                      child: Image.network(
+                      'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png',
+                      fit: BoxFit.cover,
+                      width: 30,
                   ),
                 ),
-
               ),
 
 //            AspectRatio(
@@ -47,7 +48,6 @@ class RegisterState extends State<RegisterWidget> {
                   return null;
                 },
                 decoration: InputDecoration(
-
                   icon: Icon(Icons.people),
                   labelText: "你的昵称",
                 ),

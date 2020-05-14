@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   imagebutton: ^0.0.6
   dio: ^3.0.4
+  gzx_dropdown_menu : ^2.0.0
 
 dev_dependencies:
   flutter_test:
