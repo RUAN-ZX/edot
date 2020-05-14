@@ -128,7 +128,7 @@ class exerciseBody extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> ListMusucle=[];
     int i = 0;
-    for(i=2;i<=backMusucleData.length;i++){
+    for(i=1;i<=backMusucleData.length;i++){
       ListMusucle.add(musucleBtn(i, false, size, printR));
     }
     return Padding(
@@ -142,9 +142,7 @@ class exerciseBody extends StatelessWidget {
               padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
               child: SizedBox(
                 width: size.width / 4,
-                //              height: 22,
                 child: new OutlineButton(
-
                   borderSide: new BorderSide(color: Theme
                       .of(context)
                       .primaryColor),
@@ -170,10 +168,13 @@ class exerciseBody extends StatelessWidget {
                       )
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushAndRemoveUntil(
-                        new MaterialPageRoute(
-                            builder: (context) => new test()),
-                            (route) => route == null);
+                    Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (BuildContext context){
+                              return test();
+                            }
+                        ),
+                    );
                   },
                 ),
               ),
