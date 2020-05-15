@@ -1,421 +1,345 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'videoSelectPage.dart';
-/// 实现一个淘宝风格的商品展示列表
-class test extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "易点健身",
-      theme: ThemeData(
-        primaryColor: Colors.lightBlueAccent,
-//          highlightColor: Colors.transparent,
-//          splashColor: Colors.transparent
-      ),
-      home: GZXDropDownMenuTestPage(),
-      // MyStackPage就是我们的核心页面 用scaffold 构建页面
-    );
-  }
-}
-class PracticeTwoSamples extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return PracticeTwoSamplesState();
-  }
+import 'package:gzx_dropdown_menu/gzx_dropdown_menu.dart';
+import 'package:gzx_dropdown_menu/gzx_dropdown_menu.dart';
+import 'taobaoTest/ui/page/drawer/gzx_filter_goods_page.dart';
+class SortCondition {
+  String name;
+  bool isSelected;
+
+  SortCondition({this.name, this.isSelected});
 }
 
-class PracticeTwoSamplesState extends State<PracticeTwoSamples>
-    with SingleTickerProviderStateMixin {
-  // 页面切换TabController
-  TabController _tabController;
+class GZXDropDownMenuTestPage extends StatefulWidget {
+  @override
+  _GZXDropDownMenuTestPageState createState() => _GZXDropDownMenuTestPageState();
+}
+
+class _GZXDropDownMenuTestPageState extends State<GZXDropDownMenuTestPage> {
+  List<String> _dropDownHeaderItemStrings = ['全城', '品牌', '距离近', '筛选'];
+  List<SortCondition> _brandSortConditions = [];
+  List<SortCondition> _distanceSortConditions = [];
+  SortCondition _selectBrandSortCondition;
+  SortCondition _selectDistanceSortCondition;
+  GZXDropdownMenuController _dropdownMenuController = GZXDropdownMenuController();
+
+  var _scaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey _stackKey = GlobalKey();
+
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
-    _tabController = TabController(initialIndex: 0, length: 4, vsync: this);
+
+    _brandSortConditions.add(SortCondition(name: '全部', isSelected: true));
+    _brandSortConditions.add(SortCondition(name: '金逸影城', isSelected: false));
+    _brandSortConditions.add(SortCondition(name: '中影国际城我比较长，你看我选择后是怎么显示的', isSelected: false));
+    _brandSortConditions.add(SortCondition(name: '星美国际城', isSelected: false));
+    _brandSortConditions.add(SortCondition(name: '博纳国际城', isSelected: false));
+    _brandSortConditions.add(SortCondition(name: '大地影院', isSelected: false));
+    _brandSortConditions.add(SortCondition(name: '嘉禾影城', isSelected: false));
+    _brandSortConditions.add(SortCondition(name: '太平洋影城', isSelected: false));
+    _brandSortConditions.add(SortCondition(name: '万达影城', isSelected: false));
+    _brandSortConditions.add(SortCondition(name: '万达影城1', isSelected: false));
+    _brandSortConditions.add(SortCondition(name: '万达影城2', isSelected: false));
+    _brandSortConditions.add(SortCondition(name: '万达影城3', isSelected: false));
+    _brandSortConditions.add(SortCondition(name: '万达影城4', isSelected: false));
+    _brandSortConditions.add(SortCondition(name: '万达影城5', isSelected: false));
+    _brandSortConditions.add(SortCondition(name: '万达影城6', isSelected: false));
+    _brandSortConditions.add(SortCondition(name: '万达影城7', isSelected: false));
+    _brandSortConditions.add(SortCondition(name: '万达影城8', isSelected: false));
+    _brandSortConditions.add(SortCondition(name: '万达影城9', isSelected: false));
+    _selectBrandSortCondition = _brandSortConditions[0];
+
+    _distanceSortConditions.add(SortCondition(name: '距离近', isSelected: true));
+    _distanceSortConditions.add(SortCondition(name: '价格低', isSelected: false));
+    _distanceSortConditions.add(SortCondition(name: '价格高', isSelected: false));
+
+    _selectDistanceSortCondition = _distanceSortConditions[0];
   }
 
   @override
   Widget build(BuildContext context) {
+    print('_GZXDropDownMenuTestPageState.build');
+
     return Scaffold(
-      // 定义顶部标题栏
-      appBar: AppBar(
-        primary: true,
-        elevation: 0,
-        automaticallyImplyLeading: true,
-        title: Container(
-          padding: EdgeInsets.only(left: 0, right: 0, top: 10, bottom: 10),
-          child: TextField(
-            maxLines: 1,
-            autofocus: false,
-            // TextFiled装饰
-            decoration: InputDecoration(
-                filled: true,
-                contentPadding: EdgeInsets.all(10),
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    gapPadding: 0,
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
-                hintText: '衬衫男',
-                suffixIcon: Icon(Icons.photo_camera)),
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+          child: AppBar(
+            brightness: Brightness.dark,
+            backgroundColor: Theme.of(context).primaryColor,
+            elevation: 0,
           ),
-        ),
-        centerTitle: true,
-        // 右侧收起的更多按钮菜单
-        actions: <Widget>[
-          PopupMenuButton(
-            itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
-              PopupMenuItem<String>(
-                child: Text("消息"),
-                value: "message",
-              ),
-              PopupMenuItem<String>(
-                child: Text("分享"),
-                value: "share",
-              ),
-            ],
-            onSelected: (String action) {
-              switch (action) {
-                case "message":
-                  print("message");
-                  break;
-                case "share":
-                  print("share");
-                  break;
-              }
-            },
-            onCanceled: () {
-              print("onCanceled");
-            },
-          )
-        ],
-        // 紧挨着标题栏AppBar的TabBar
-        bottom: TabBar(
-          controller: _tabController,
-          isScrollable: false,
-          // 标签选中颜色
-          labelColor: Color.fromRGBO(247, 70, 0, 1),
-          unselectedLabelColor: Colors.black,
-          indicatorColor: Color.fromRGBO(247, 70, 0, 1),
-          indicatorSize: TabBarIndicatorSize.label,
-          // 几个Tab按钮
-          tabs: <Widget>[
-            Tab(
-              text: "全部",
-            ),
-            Tab(
-              text: "天猫",
-            ),
-            Tab(
-              text: "店铺",
-            ),
-            Tab(
-              text: "淘宝经验",
-            ),
-          ],
-        ),
-      ),
-      // 右下角悬浮的按钮Button
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white,
-        onPressed: () {},
-        mini: true,
-        elevation: 1,
-        highlightElevation: 2,
-        child: Icon(
-          Icons.vertical_align_top,
-        ),
-      ),
-      // 主体部分布局内容，使用了TabBarView
-      body: TabBarView(
-        controller: _tabController,
-        // 内部切换页布局内容
+          preferredSize: Size.fromHeight(0)),
+      backgroundColor: Colors.white,
+      endDrawer: GZXFilterGoodsPage(),
+      body: Stack(
+        key: _stackKey,
         children: <Widget>[
-          getPage1(),
-          getPage1(),
-          Center(
-            child: Text("data3"),
+          Column(
+            children: <Widget>[
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 44,
+                color: Theme.of(context).primaryColor,
+                alignment: Alignment.center,
+                child: Text(
+                  '仿美团电影下拉筛选菜单',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+//              SizedBox(height: 20,),
+              // 下拉菜单头部
+              GZXDropDownHeader(
+                // 下拉的头部项，目前每一项，只能自定义显示的文字、图标、图标大小修改
+                items: [
+                  GZXDropDownHeaderItem(_dropDownHeaderItemStrings[0]),
+                  GZXDropDownHeaderItem(_dropDownHeaderItemStrings[1]),
+                  GZXDropDownHeaderItem(_dropDownHeaderItemStrings[2]),
+                  GZXDropDownHeaderItem(_dropDownHeaderItemStrings[3], iconData: Icons.filter_frames, iconSize: 18),
+                ],
+                // GZXDropDownHeader对应第一父级Stack的key
+                stackKey: _stackKey,
+                // controller用于控制menu的显示或隐藏
+                controller: _dropdownMenuController,
+                // 当点击头部项的事件，在这里可以进行页面跳转或openEndDrawer
+                onItemTap: (index) {
+                  if (index == 3) {
+                    _dropdownMenuController.hide();
+                    _scaffoldKey.currentState.openEndDrawer();
+                  }
+                },
+//                // 头部的高度
+//                height: 40,
+//                // 头部背景颜色
+//                color: Colors.red,
+//                // 头部边框宽度
+//                borderWidth: 1,
+//                // 头部边框颜色
+//                borderColor: Color(0xFFeeede6),
+//                // 分割线高度
+//                dividerHeight: 20,
+//                // 分割线颜色
+//                dividerColor: Color(0xFFeeede6),
+//                // 文字样式
+//                style: TextStyle(color: Color(0xFF666666), fontSize: 13),
+//                // 下拉时文字样式
+//                dropDownStyle: TextStyle(
+//                  fontSize: 13,
+//                  color: Theme.of(context).primaryColor,
+//                ),
+//                // 图标大小
+//                iconSize: 20,
+//                // 图标颜色
+//                iconColor: Color(0xFFafada7),
+//                // 下拉时图标颜色
+//                iconDropDownColor: Theme.of(context).primaryColor,
+              ),
+              Expanded(
+                child: ListView.separated(
+                    itemCount: 100,
+                    separatorBuilder: (BuildContext context, int index) => Divider(height: 1.0),
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        child: ListTile(
+                          leading: Text('test$index'),
+                        ),
+                        onTap: () {},
+                      );
+                    }),
+              ),
+            ],
           ),
-          Center(
-            child: Text("data4"),
+          // 下拉菜单
+          GZXDropDownMenu(
+            // controller用于控制menu的显示或隐藏
+            controller: _dropdownMenuController,
+            // 下拉菜单显示或隐藏动画时长
+            animationMilliseconds: 300,
+            // 下拉后遮罩颜色
+//          maskColor: Theme.of(context).primaryColor.withOpacity(0.5),
+//          maskColor: Colors.red.withOpacity(0.5),
+            // 下拉菜单，高度自定义，你想显示什么就显示什么，完全由你决定，你只需要在选择后调用_dropdownMenuController.hide();即可
+            menus: [
+              GZXDropdownMenuBuilder(
+                  dropDownHeight: 40 * 8.0,
+                  dropDownWidget: _buildAddressWidget((selectValue) {
+                    _dropDownHeaderItemStrings[0] = selectValue;
+                    _dropdownMenuController.hide();
+                    setState(() {});
+                  })),
+              GZXDropdownMenuBuilder(
+                  dropDownHeight: 40 * 8.0,
+                  dropDownWidget: _buildConditionListWidget(_brandSortConditions, (value) {
+                    _selectBrandSortCondition = value;
+                    _dropDownHeaderItemStrings[1] =
+                    _selectBrandSortCondition.name == '全部' ? '品牌' : _selectBrandSortCondition.name;
+                    _dropdownMenuController.hide();
+                    setState(() {});
+                  })),
+              GZXDropdownMenuBuilder(
+                  dropDownHeight: 40.0 * _distanceSortConditions.length,
+                  dropDownWidget: _buildConditionListWidget(_distanceSortConditions, (value) {
+                    _selectDistanceSortCondition = value;
+                    _dropDownHeaderItemStrings[2] = _selectDistanceSortCondition.name;
+                    _dropdownMenuController.hide();
+                    setState(() {});
+                  })),
+            ],
           ),
         ],
       ),
     );
   }
 
-  // 将页面布局单独提取出来写，方便
-  Widget getPage1() {
-    // 建议最外层使用Container包裹一层
-    return Container(
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30), topRight: Radius.circular(30))),
-      // 内部页面使用CustomScrollView来实现滚动效果
-      child: CustomScrollView(slivers: <Widget>[
-        // 放置一个可推上去的顶部的标题栏
-        SliverPersistentHeader(
-          floating: true,
-          delegate: _SliverAppBarDelegate(
-              maxHeight: 30,
-              minHeight: 30,
-              child: Container(
-                height: 30,
-                color: Colors.white,
-                alignment: Alignment.center,
-                child: Text('淘宝购物悬浮Header'),
-              )),
+  int _selectTempFirstLevelIndex = 0;
+  int _selectFirstLevelIndex = 0;
+  int _selectSecondLevelIndex = -1;
+
+  _buildAddressWidget(void itemOnTap(String selectValue)) {
+//    List firstLevels = new List<int>.filled(15, 0);
+    List firstLevels = new List<String>.generate(15, (int index) {
+      if (index == 0) {
+        return '全部';
+      }
+      return '$index区';
+    });
+
+    List secondLevels = new List<String>.generate(15, (int index) {
+      if (index == 0) {
+        return '全部';
+      }
+      return '$_selectTempFirstLevelIndex$index街道办';
+    });
+
+    return Row(
+      children: <Widget>[
+        Container(
+          width: 100,
+          child: ListView(
+            children: firstLevels.map((item) {
+              int index = firstLevels.indexOf(item);
+              return GestureDetector(
+                onTap: () {
+                  _selectTempFirstLevelIndex = index;
+
+                  if (_selectTempFirstLevelIndex == 0) {
+                    itemOnTap('全城');
+                    return;
+                  }
+                  setState(() {});
+                },
+                child: Container(
+                    height: 40,
+                    color: _selectTempFirstLevelIndex == index ? Colors.grey[200] : Colors.white,
+                    alignment: Alignment.center,
+                    child: _selectTempFirstLevelIndex == index
+                        ? Text(
+                      '$item',
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                      ),
+                    )
+                        : Text('$item')),
+              );
+            }).toList(),
+          ),
         ),
-        // 放置一个固定的顶部的标题栏
-        SliverPersistentHeader(
-          pinned: true,
-          delegate: _SliverAppBarDelegate(
-              maxHeight: 30,
-              minHeight: 30,
-              child: Container(
-                color: Colors.white,
-                padding: EdgeInsets.all(5),
-                height: 30,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          '综合',
-                          style: TextStyle(color: Colors.orange),
+        Expanded(
+          child: Container(
+            color: Colors.grey[200],
+            child: _selectTempFirstLevelIndex == 0
+                ? Container()
+                : ListView(
+              children: secondLevels.map((item) {
+                int index = secondLevels.indexOf(item);
+                return GestureDetector(
+                    onTap: () {
+                      _selectSecondLevelIndex = index;
+                      _selectFirstLevelIndex = _selectTempFirstLevelIndex;
+                      if (_selectSecondLevelIndex == 0) {
+                        itemOnTap(firstLevels[_selectFirstLevelIndex]);
+                      } else {
+                        itemOnTap(item);
+                      }
+                    },
+                    child: Container(
+                      height: 40,
+                      alignment: Alignment.centerLeft,
+                      child: Row(children: <Widget>[
+                        SizedBox(
+                          width: 20,
                         ),
-                        Icon(
-                          Icons.arrow_drop_down,
-                          color: Colors.orange,
-                        ),
-                      ],
-                    ),
-                    Text(
-                      '销量',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          '筛选 ',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        Icon(
-                          Icons.filter_vintage,
-                          color: Colors.black,
-                          size: 16,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              )),
-        ),
-        // 列表内容，使用SliverList实现
-        SliverList(
-          delegate:
-          SliverChildBuilderDelegate((BuildContext context, int index) {
-            return Container(
-              alignment: Alignment.center,
-              // 每条内容的布局Item
-              child: getItem(),
-            );
-          },
-              // 定义了60条Item数据
-              childCount: 60),
+                        _selectFirstLevelIndex == _selectTempFirstLevelIndex && _selectSecondLevelIndex == index
+                            ? Text(
+                          '$item',
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        )
+                            : Text('$item'),
+                      ]),
+                    ));
+              }).toList(),
+            ),
+          ),
         )
-      ]),
+      ],
     );
   }
 
-  // 每条内容的布局Item
-  Widget getItem() {
-    return Container(
-        padding: EdgeInsets.all(5),
-        child: Row(children: <Widget>[
-          // 圆角图片
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10.0),
-            child: Image.network(
-              'https://g-search2.alicdn.com/img/bao/uploaded/i4/i4/778081993/O1CN01R7Ytfe1QapseIzl8o_!!778081993.jpg_250x250.jpg_.webp',
-              height: 108,
+  _buildConditionListWidget(items, void itemOnTap(SortCondition sortCondition)) {
+    return ListView.separated(
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      itemCount: items.length,
+      // item 的个数
+      separatorBuilder: (BuildContext context, int index) => Divider(height: 1.0),
+      // 添加分割线
+      itemBuilder: (BuildContext context, int index) {
+        SortCondition goodsSortCondition = items[index];
+        return GestureDetector(
+          onTap: () {
+            for (var value in items) {
+              value.isSelected = false;
+            }
+            goodsSortCondition.isSelected = true;
+
+            itemOnTap(goodsSortCondition);
+          },
+          child: Container(
+//            color: Colors.blue,
+            height: 40,
+            child: Row(
+              children: <Widget>[
+                SizedBox(
+                  width: 16,
+                ),
+                Expanded(
+                  child: Text(
+                    goodsSortCondition.name,
+                    style: TextStyle(
+                      color: goodsSortCondition.isSelected ? Theme.of(context).primaryColor : Colors.black,
+                    ),
+                  ),
+                ),
+                goodsSortCondition.isSelected
+                    ? Icon(
+                  Icons.check,
+                  color: Theme.of(context).primaryColor,
+                  size: 16,
+                )
+                    : SizedBox(),
+                SizedBox(
+                  width: 16,
+                ),
+              ],
             ),
           ),
-          // 用SizedBox增加间距
-          SizedBox(
-            width: 10,
-          ),
-          // 右侧的商品描述信息
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: 6,
-              ),
-              Row(
-                children: <Widget>[
-                  // 天猫的标签实现
-                  Container(
-                    padding:
-                    EdgeInsets.only(left: 1, right: 1, top: 0, bottom: 0),
-                    decoration: BoxDecoration(
-                        color: Colors.red,
-                        border:
-                        Border.all(color: Color(0xFFFF0000), width: 0.5),
-                        borderRadius: BorderRadius.all(Radius.circular(5))),
-                    child: Text(
-                      '天猫',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                      ),
-                    ),
-                  ),
-                  // 商品标题
-                  Text(
-                    ' 夏季格子男士韩版修身薄款休闲棉衬衣 ',
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                    maxLines: 2,
-                    softWrap: true,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 3,
-              ),
-              // 商品特征属性
-              Text(
-                '格子布面料 | 方领 | 薄面料',
-                style: TextStyle(color: Colors.grey, fontSize: 12),
-              ),
-              SizedBox(
-                height: 3,
-              ),
-              // 两个横向标签
-              Row(
-                children: <Widget>[
-                  Container(
-                    padding:
-                    EdgeInsets.only(left: 3, right: 3, top: 1, bottom: 1),
-                    decoration: BoxDecoration(
-                        border:
-                        Border.all(color: Color(0xFFFF0000), width: 0.5),
-                        borderRadius: BorderRadius.all(Radius.circular(5))),
-                    child: Text(
-                      '天猫无忧购',
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontSize: 10,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    padding:
-                    EdgeInsets.only(left: 3, right: 3, top: 1, bottom: 1),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.yellow, width: 0.5),
-                        borderRadius: BorderRadius.all(Radius.circular(5))),
-                    child: Text(
-                      '包邮',
-                      style: TextStyle(
-                        color: Colors.yellow,
-                        fontSize: 10,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 3,
-              ),
-              // 价格信息
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  Text(
-                    '￥',
-                    style: TextStyle(color: Colors.orange, fontSize: 12),
-                  ),
-                  Text(
-                    '78',
-                    style: TextStyle(color: Colors.orange, fontSize: 20),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    '530人付款  杭州',
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 2,
-              ),
-              // Item底部店铺信息
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  Text(
-                    '哥尼诺旗舰店',
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
-                  ),
-                  Text(
-                    '  进店 >',
-                    style: TextStyle(color: Colors.black, fontSize: 12),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Icon(
-                    Icons.more_horiz,
-                    color: Colors.grey,
-                    size: 20,
-                  ),
-                ],
-              )
-            ],
-          )
-        ]));
-  }
-}
-
-// SliverPersistentHeader的SliverPersistentHeaderDelegate实现
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _SliverAppBarDelegate({
-    @required this.minHeight,
-    @required this.maxHeight,
-    @required this.child,
-  });
-
-  final double minHeight;
-  final double maxHeight;
-  final Widget child;
-
-  @override
-  double get minExtent => minHeight;
-
-  @override
-  double get maxExtent => maxHeight;
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return child;
-  }
-
-  @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return maxHeight != oldDelegate.maxHeight ||
-        minHeight != oldDelegate.minHeight ||
-        child != oldDelegate.child;
+        );
+      },
+    );
   }
 }

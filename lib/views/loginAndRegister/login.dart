@@ -32,14 +32,6 @@ class LoginWidgetState extends State<LoginWidget> {
                   ),
                 ),
               ),
-
-//            AspectRatio(
-//              aspectRatio: 2.0/1.0,
-//              child: CircleAvatar(
-//                backgroundImage: NetworkImage('http://b-ssl.duitang.com/uploads/item/201612/05/20161205085151_AGRej.jpeg'),
-//              )
-//
-
               TextFormField(
                 onSaved: (value) => this.username = value,
                 validator: (value) {

@@ -71,10 +71,6 @@ class _MyStackPageState extends State<MyStackPage> {
 //        unselectedFontSize: 14,
         type: BottomNavigationBarType.fixed,
         items: [
-//          createItem("record", "记录"),
-//          createItem("discover", "发现"),
-//          createItem("exercise", "训练"),
-//          createItem("me", "我的"),
           createItem(1, "记录"),
           createItem(2, "发现"),
           createItem(3, "训练"),
@@ -85,7 +81,7 @@ class _MyStackPageState extends State<MyStackPage> {
             Navigator.of(context).push(
               MaterialPageRoute(
                   builder: (BuildContext context){
-                    return exercisePage();
+                    return exercise();
                   }
               ),
             );

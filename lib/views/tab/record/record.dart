@@ -24,25 +24,23 @@ class _recordBodyState extends State<recordBody> {
   void initState() {
     super.initState();
 
-    FormData formData = FormData.fromMap({
-      "mId": "40",
-    });
+//    FormData formData = FormData.fromMap({
+//      "mId": "40",
+//    });
 
-    HttpRequest.request("getMessage/",method: "post",postdata: formData).then((res){
-      setState(() {
-        this.result = res;
-      });//这里 一旦访问完成立刻幅值 立刻让其他人通过result拿到值！
-      final a = this.result.data['msUserId'];
-//      print(a);
-    });
-
-    HttpRequest.request("getMessage/",method: "get").then((res){
-      setState(() {
-        this.result = res;
-      });
-      final a = this.result.data;
-//      print(a);
-    });
+//    HttpRequest.request("getMessage/",method: "post",postdata: formData).then((res){
+//      setState(() {
+//        this.result = res;
+//      });//这里 一旦访问完成立刻幅值 立刻让其他人通过result拿到值！
+//      final a = this.result.data['msUserId'];
+//    });
+//
+//    HttpRequest.request("getMessage/",method: "get").then((res){
+//      setState(() {
+//        this.result = res;
+//      });
+//      final a = this.result.data;
+//    });
 
 
   }

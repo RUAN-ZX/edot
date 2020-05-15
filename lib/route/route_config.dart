@@ -7,7 +7,6 @@ import 'package:edot/views/tab/exercise/exercise.dart';
 import 'package:edot/views/tab/me/me.dart';
 import 'package:edot/views/tab/record/record.dart';
 import 'package:edot/views/tab/tabR.dart';
-import 'package:edot/views/tab/exercise/test.dart';
 
 
 // loginAndRegister

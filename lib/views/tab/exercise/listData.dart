@@ -42,7 +42,7 @@ List backMusucleData = [
     "x": 1 / 6,
     "y": 1 / 20-1/70-1/22+1/40,
     "width": 20 / 36,
-    "height": 6*0.9 / 76,
+    "height": 6*0.8 / 76,
     "btnSrcPressed": "b_deltoid2.png",
     "btnSrcUnPressed": "b_deltoid1.png",
   },
@@ -113,14 +113,51 @@ List backMusucleData = [
 
 
 List frontMusucleData = [
-  //deltoid 三角肌
+  //手臂
   {
-    "x": 1 / 6,
-    "y": 1 / 20-1/70,
-    "width": 20 / 36,
-    "height": 6*0.9 / 76,
-    "btnSrcPressed": "b_deltoid2.png",
-    "btnSrcUnPressed": "b_deltoid1.png",
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1,
+    "height": 16*0.9/55,
+    "btnSrcPressed": "f_arm2.png",
+    "btnSrcUnPressed": "f_arm1.png",
   },
+  //胸肌
+  {
+    "x": 7/27,
+    "y": 2/55,
+    "width": 25/54,
+    "height": 7*0.9/55,
+    "btnSrcPressed": "f_pec2.png",
+    "btnSrcUnPressed": "f_pec1.png",
+  },
+  //腹肌
+  {
+    "x": 35/108,
+    "y": 10/55,
+    "width": 9/27,
+    "height": 1*0.9/5,
+    "btnSrcPressed": "f_ab2.png",
+    "btnSrcUnPressed": "f_ab3.png",
+  },
+  //大腿
+  {
+    "x": 54/270,
+    "y": 230/550,
+    "width": 16/27,
+    "height": 12*0.9/55,
+    "btnSrcPressed": "f_thigh2.png",
+    "btnSrcUnPressed": "f_thigh1.png",
+  },
+  //小腿
+  {
+    "x": 71/540,
+    "y": 320/550,
+    "width": 18*1.1/27,
+    "height": 13*0.9/55,
+    "btnSrcPressed": "f_leg2.png",
+    "btnSrcUnPressed": "f_leg1.png",
+  },
+
 
 ];
