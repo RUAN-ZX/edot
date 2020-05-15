@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gzx_dropdown_menu/gzx_dropdown_menu.dart';
-import 'package:gzx_dropdown_menu/gzx_dropdown_menu.dart';
 import 'taobaoTest/ui/page/drawer/gzx_filter_goods_page.dart';
 class SortCondition {
   String name;
@@ -15,11 +14,15 @@ class GZXDropDownMenuTestPage extends StatefulWidget {
 }
 
 class _GZXDropDownMenuTestPageState extends State<GZXDropDownMenuTestPage> {
-  List<String> _dropDownHeaderItemStrings = ['全城', '品牌', '距离近', '筛选'];
-  List<SortCondition> _brandSortConditions = [];
-  List<SortCondition> _distanceSortConditions = [];
-  SortCondition _selectBrandSortCondition;
-  SortCondition _selectDistanceSortCondition;
+  List<String> _dropDownHeaderItemStrings = ['综合排序', '目的', '地点', '器械', '筛选'];
+  List<SortCondition> _SortConditions0 = [];
+  List<SortCondition> _SortConditions1 = [];
+  List<SortCondition> _SortConditions2 = [];
+  List<SortCondition> _SortConditions3 = [];
+  SortCondition _selectSortCondition0;
+  SortCondition _selectSortCondition1;
+  SortCondition _selectSortCondition2;
+  SortCondition _selectSortCondition3;
   GZXDropdownMenuController _dropdownMenuController = GZXDropdownMenuController();
 
   var _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -29,38 +32,31 @@ class _GZXDropDownMenuTestPageState extends State<GZXDropDownMenuTestPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    // 目的
+    _SortConditions1.add(SortCondition(name: '练腿', isSelected: true));
+    _SortConditions1.add(SortCondition(name: '练腰', isSelected: false));
+    _SortConditions1.add(SortCondition(name: '练胸', isSelected: false));
+    _SortConditions1.add(SortCondition(name: '练背', isSelected: false));
+    _SortConditions1.add(SortCondition(name: '练腹肌', isSelected: false));
+    _selectSortCondition1 = _SortConditions1[0];
 
-    _brandSortConditions.add(SortCondition(name: '全部', isSelected: true));
-    _brandSortConditions.add(SortCondition(name: '金逸影城', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '中影国际城我比较长，你看我选择后是怎么显示的', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '星美国际城', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '博纳国际城', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '大地影院', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '嘉禾影城', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '太平洋影城', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城1', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城2', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城3', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城4', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城5', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城6', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城7', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城8', isSelected: false));
-    _brandSortConditions.add(SortCondition(name: '万达影城9', isSelected: false));
-    _selectBrandSortCondition = _brandSortConditions[0];
+    //地点
+    _SortConditions2.add(SortCondition(name: '健身房', isSelected: true));
+    _SortConditions2.add(SortCondition(name: '家', isSelected: false));
+    _SortConditions2.add(SortCondition(name: '运动场', isSelected: false));
+    _selectSortCondition2 = _SortConditions2[0];
 
-    _distanceSortConditions.add(SortCondition(name: '距离近', isSelected: true));
-    _distanceSortConditions.add(SortCondition(name: '价格低', isSelected: false));
-    _distanceSortConditions.add(SortCondition(name: '价格高', isSelected: false));
 
-    _selectDistanceSortCondition = _distanceSortConditions[0];
+    //器械
+    _SortConditions3.add(SortCondition(name: '跑步机', isSelected: true));
+    _SortConditions3.add(SortCondition(name: '瑜伽垫', isSelected: false));
+    _SortConditions3.add(SortCondition(name: '杠铃', isSelected: false));
+    _selectSortCondition3 = _SortConditions3[0];
+
   }
 
   @override
   Widget build(BuildContext context) {
-    print('_GZXDropDownMenuTestPageState.build');
-
     return Scaffold(
       key: _scaffoldKey,
       appBar: PreferredSize(
@@ -78,12 +74,13 @@ class _GZXDropDownMenuTestPageState extends State<GZXDropDownMenuTestPage> {
           Column(
             children: <Widget>[
               Container(
+                // 搜索框高度设置
                 width: MediaQuery.of(context).size.width,
                 height: 44,
                 color: Theme.of(context).primaryColor,
                 alignment: Alignment.center,
                 child: Text(
-                  '仿美团电影下拉筛选菜单',
+                  '搜索框',
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,
@@ -98,7 +95,8 @@ class _GZXDropDownMenuTestPageState extends State<GZXDropDownMenuTestPage> {
                   GZXDropDownHeaderItem(_dropDownHeaderItemStrings[0]),
                   GZXDropDownHeaderItem(_dropDownHeaderItemStrings[1]),
                   GZXDropDownHeaderItem(_dropDownHeaderItemStrings[2]),
-                  GZXDropDownHeaderItem(_dropDownHeaderItemStrings[3], iconData: Icons.filter_frames, iconSize: 18),
+                  GZXDropDownHeaderItem(_dropDownHeaderItemStrings[3]),
+                  GZXDropDownHeaderItem(_dropDownHeaderItemStrings[4], iconData: Icons.filter_frames, iconSize: 18),
                 ],
                 // GZXDropDownHeader对应第一父级Stack的key
                 stackKey: _stackKey,
@@ -106,7 +104,7 @@ class _GZXDropDownMenuTestPageState extends State<GZXDropDownMenuTestPage> {
                 controller: _dropdownMenuController,
                 // 当点击头部项的事件，在这里可以进行页面跳转或openEndDrawer
                 onItemTap: (index) {
-                  if (index == 3) {
+                  if (index == 4) {
                     _dropdownMenuController.hide();
                     _scaffoldKey.currentState.openEndDrawer();
                   }
@@ -157,7 +155,7 @@ class _GZXDropDownMenuTestPageState extends State<GZXDropDownMenuTestPage> {
             // controller用于控制menu的显示或隐藏
             controller: _dropdownMenuController,
             // 下拉菜单显示或隐藏动画时长
-            animationMilliseconds: 300,
+            animationMilliseconds: 500,
             // 下拉后遮罩颜色
 //          maskColor: Theme.of(context).primaryColor.withOpacity(0.5),
 //          maskColor: Colors.red.withOpacity(0.5),
@@ -170,20 +168,39 @@ class _GZXDropDownMenuTestPageState extends State<GZXDropDownMenuTestPage> {
                     _dropdownMenuController.hide();
                     setState(() {});
                   })),
+//              GZXDropdownMenuBuilder(
+//                  dropDownHeight: 40.0 * _SortConditions0.length,
+//                  dropDownWidget: _buildConditionListWidget(_SortConditions1, (value) {
+//                    _selectSortCondition0 = value;
+//                    _dropDownHeaderItemStrings[0] =
+//                    _selectSortCondition0.name == '综合排序' ? '综合排序' : _selectSortCondition0.name;
+//                    _dropdownMenuController.hide();
+//                    setState(() {});
+//                  })),
               GZXDropdownMenuBuilder(
-                  dropDownHeight: 40 * 8.0,
-                  dropDownWidget: _buildConditionListWidget(_brandSortConditions, (value) {
-                    _selectBrandSortCondition = value;
+                  dropDownHeight: 40.0 * _SortConditions1.length,
+                  dropDownWidget: _buildConditionListWidget(_SortConditions1, (value) {
+                    _selectSortCondition1 = value;
                     _dropDownHeaderItemStrings[1] =
-                    _selectBrandSortCondition.name == '全部' ? '品牌' : _selectBrandSortCondition.name;
+                    _selectSortCondition1.name == '全部' ? '目的' : _selectSortCondition1.name;
                     _dropdownMenuController.hide();
                     setState(() {});
                   })),
               GZXDropdownMenuBuilder(
-                  dropDownHeight: 40.0 * _distanceSortConditions.length,
-                  dropDownWidget: _buildConditionListWidget(_distanceSortConditions, (value) {
-                    _selectDistanceSortCondition = value;
-                    _dropDownHeaderItemStrings[2] = _selectDistanceSortCondition.name;
+                  dropDownHeight: 40.0 * _SortConditions2.length,
+                  dropDownWidget: _buildConditionListWidget(_SortConditions2, (value) {
+                    _selectSortCondition2 = value;
+                    _dropDownHeaderItemStrings[2] =
+                    _selectSortCondition2.name == '全部' ? '地点' : _selectSortCondition2.name;
+                    _dropdownMenuController.hide();
+                    setState(() {});
+                  })),
+              GZXDropdownMenuBuilder(
+                  dropDownHeight: 40.0 * _SortConditions3.length,
+                  dropDownWidget: _buildConditionListWidget(_SortConditions3, (value) {
+                    _selectSortCondition3 = value;
+                    _dropDownHeaderItemStrings[3] =
+                    _selectSortCondition3.name == '全部' ? '器械' : _selectSortCondition3.name;
                     _dropdownMenuController.hide();
                     setState(() {});
                   })),
@@ -200,19 +217,30 @@ class _GZXDropDownMenuTestPageState extends State<GZXDropDownMenuTestPage> {
 
   _buildAddressWidget(void itemOnTap(String selectValue)) {
 //    List firstLevels = new List<int>.filled(15, 0);
-    List firstLevels = new List<String>.generate(15, (int index) {
-      if (index == 0) {
-        return '全部';
-      }
-      return '$index区';
-    });
+    List firstLevels = [
+      '综合排序',
+      '点赞排序',
+      '时间排序',
+      '点击量排序',
+    ];
 
-    List secondLevels = new List<String>.generate(15, (int index) {
-      if (index == 0) {
-        return '全部';
-      }
-      return '$_selectTempFirstLevelIndex$index街道办';
-    });
+    List secondLevels = [
+      '升序',
+      '降序',
+    ];
+//    List firstLevels = new List<String>.generate(15, (int index) {
+//      if (index == 0) {
+//        return '全部';
+//      }
+//      return '$index区';
+//    });
+//
+//    List secondLevels = new List<String>.generate(15, (int index) {
+//      if (index == 0) {
+//        return '全部';
+//      }
+//      return '$_selectTempFirstLevelIndex$index街道办';
+//    });
 
     return Row(
       children: <Widget>[
@@ -225,10 +253,10 @@ class _GZXDropDownMenuTestPageState extends State<GZXDropDownMenuTestPage> {
                 onTap: () {
                   _selectTempFirstLevelIndex = index;
 
-                  if (_selectTempFirstLevelIndex == 0) {
-                    itemOnTap('全城');
-                    return;
-                  }
+//                  if (_selectTempFirstLevelIndex == 0) {
+//                    itemOnTap('全城');
+//                    return;
+//                  }
                   setState(() {});
                 },
                 child: Container(
@@ -258,12 +286,15 @@ class _GZXDropDownMenuTestPageState extends State<GZXDropDownMenuTestPage> {
                 return GestureDetector(
                     onTap: () {
                       _selectSecondLevelIndex = index;
+
                       _selectFirstLevelIndex = _selectTempFirstLevelIndex;
-                      if (_selectSecondLevelIndex == 0) {
-                        itemOnTap(firstLevels[_selectFirstLevelIndex]);
-                      } else {
-                        itemOnTap(item);
-                      }
+                      itemOnTap(item);
+//                      itemOnTap(firstLevels[_selectFirstLevelIndex]);
+//                      if (_selectSecondLevelIndex == 0) {
+//                        itemOnTap(firstLevels[_selectFirstLevelIndex]);
+//                      } else {
+//                        itemOnTap(item);
+//                      }
                     },
                     child: Container(
                       height: 40,

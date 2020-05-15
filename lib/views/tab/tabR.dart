@@ -59,7 +59,7 @@ class _MyStackPageState extends State<MyStackPage> {
         children: <Widget>[
           record(),
           discover(),
-//          exercise(),
+          exercise(),
           me(),
 
 //          Profile()

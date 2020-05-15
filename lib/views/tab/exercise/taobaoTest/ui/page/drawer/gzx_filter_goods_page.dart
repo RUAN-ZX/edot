@@ -28,9 +28,9 @@ class _GZXFilterGoodsPageState extends State<GZXFilterGoodsPage> {
 
   List<String> _value = ['轻薄便捷', '商务办公', '家庭影音', '家庭娱乐', '女性定位', '学生'];
   List<String> _value1 = ['尊贵旗舰', '移动工作站', '高清游戏', '炒股理财', '30876.G18'];
-  List<String> _value2 = ['包邮', '天猫', '公益宝贝', '天猫直送', '花呗分期', '赠送运费险', '天猫无忧购', '消费者保障', '全球购', '淘金币抵钱', '通用排序'];
-  List _value3 = ['65-5130', '5130-1.1万', '1.1万-1.5万'];
-  List _value4 = ['10%的选择', '52%的选择', '23%的选择'];
+  List<String> _value2 = ['简单', '一般', '较难', '困难', '挑战', '极限'];
+  List _value3 = ['0-5', '6-10', '11-20','>20'];
+  List _value4 = ['30%的选择', '20%的选择', '40%的选择','10%的选择'];
   List<String> _value5 = ['江浙泸', '珠三角', '港澳台', '海外'];
   List<String> _value6 = ['上海', '北京', '深圳', '广州',];
   List<String> _value7 = ['河北', '河南', '云南', '辽宁', '黑龙江', '湖南', '安徽', '山东', '新疆维吾尔', '江苏', '浙江', '台湾', '香港', '澳门', '台湾'];
@@ -222,7 +222,7 @@ class _GZXFilterGoodsPageState extends State<GZXFilterGoodsPage> {
       ),
       Padding(
         padding: EdgeInsets.only(left: 6),
-        child: Text('价格区间(元)', style: TextStyle(fontSize: 12, color: Color(0xFF6a6a6a))),
+        child: Text('训练时间', style: TextStyle(fontSize: 12, color: Color(0xFF6a6a6a))),
       ),
       SizedBox(
         height: 6,
@@ -237,7 +237,7 @@ class _GZXFilterGoodsPageState extends State<GZXFilterGoodsPage> {
                 color: GZXColors.mainBackgroundColor,
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: Text('最低价', style: TextStyle(fontSize: 11, color: Colors.grey)),
+              child: Text('最短时间', style: TextStyle(fontSize: 11, color: Colors.grey)),
               alignment: Alignment.center,
             ),
           ),
@@ -254,7 +254,7 @@ class _GZXFilterGoodsPageState extends State<GZXFilterGoodsPage> {
                 color: GZXColors.mainBackgroundColor,
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: Text('最低价', style: TextStyle(fontSize: 11, color: Colors.grey)),
+              child: Text('最长时间', style: TextStyle(fontSize: 11, color: Colors.grey)),
               alignment: Alignment.center,
             ),
           )
@@ -521,26 +521,26 @@ class _GZXFilterGoodsPageState extends State<GZXFilterGoodsPage> {
         children: <Widget>[
           Expanded(
             child: ListView(primary: false, shrinkWrap: true, children: <Widget>[
-              _buildGroup(),
-              _buildGroup1('折扣和服务', false, _value2),
-              _buildGroup2(),
-              _buildGroup3(),
-              _buildGroup4(),
-              _buildGroup5('尺寸', _value8, _isHideValue8, () {
-                setState(() {
-                  _isHideValue8 = !_isHideValue8;
-                });
-              }),
-              _buildGroup5('硬盘容量', _value9, _isHideValue9, () {
-                setState(() {
-                  _isHideValue9 = !_isHideValue9;
-                });
-              }),
-              _buildGroup5('内存容量', _value10, _isHideValue10, () {
-                setState(() {
-                  _isHideValue10 = !_isHideValue10;
-                });
-              }),
+//              _buildGroup(),
+              _buildGroup1('难易程度', false, _value2),
+              _buildGroup2(),// 区间
+//              _buildGroup3(),
+//              _buildGroup4(),
+//              _buildGroup5('尺寸', _value8, _isHideValue8, () {
+//                setState(() {
+//                  _isHideValue8 = !_isHideValue8;
+//                });
+//              }),
+//              _buildGroup5('硬盘容量', _value9, _isHideValue9, () {
+//                setState(() {
+//                  _isHideValue9 = !_isHideValue9;
+//                });
+//              }),
+//              _buildGroup5('内存容量', _value10, _isHideValue10, () {
+//                setState(() {
+//                  _isHideValue10 = !_isHideValue10;
+//                });
+//              }),
             ]),
           ),
           Container(
@@ -554,7 +554,7 @@ class _GZXFilterGoodsPageState extends State<GZXFilterGoodsPage> {
                   height: 34,
 //                  width: 44,
                   decoration: BoxDecoration(
-                    color: Color(0xFFfea000),
+                    color: Colors.lightBlueAccent,
                     borderRadius: BorderRadius.horizontal(left: Radius.circular(20)),
                   ),
                   child: Text(
@@ -569,7 +569,7 @@ class _GZXFilterGoodsPageState extends State<GZXFilterGoodsPage> {
                   padding: EdgeInsets.only(left: 25, top: 6, right: 25, bottom: 6),
                   height: 34,
                   decoration: BoxDecoration(
-                    color: Color(0xFFfe7201),
+                    color: Colors.deepPurple,
                     borderRadius: BorderRadius.horizontal(right: Radius.circular(20)),
                   ),
                   child: Text('确定', style: TextStyle(fontSize: 15, color: Colors.white)),
