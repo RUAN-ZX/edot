@@ -2,9 +2,9 @@ List backMusucleData = [
   //deltoid 三角肌
   {
     "x": 1 / 6,
-    "y": 1 / 20-1/70-1/22+1/40,
+    "y": 1 / 20-1/70-1/22+2/40,
     "width": 20 / 36,
-    "height": 6*0.8 / 76,
+    "height": 4 / 100,
     "btnSrcPressed": "b_deltoid2.png",
     "btnSrcUnPressed": "b_deltoid1.png",
   },
@@ -74,9 +74,9 @@ List frontMusucleData = [
   //deltoid 三角肌
   {
     "x": 1 / 6,
-    "y": 1 / 20-1/70-1/22+1/40,
+    "y": 1 / 20-1/70-1/22+2/40,
     "width": 20 / 36,
-    "height": 6*0.8 / 76,
+    "height": 4 / 100,
     "btnSrcPressed": "f_deltoid2.png",
     "btnSrcUnPressed": "f_deltoid1.png",
   },
@@ -103,9 +103,9 @@ List frontMusucleData = [
 
   // 腹肌 ab
   {
-    "x": 2 / 6.7-1/60,
+    "x": 2 / 6.7-1/50+3/72,
     "y": 1 / 4-1/30+1/40,
-    "width": 12 / 36,
+    "width": 9 / 36,
     "height": 12 / 76,
     "btnSrcPressed": "f_ab2.png",
     "btnSrcUnPressed": "f_ab1.png",

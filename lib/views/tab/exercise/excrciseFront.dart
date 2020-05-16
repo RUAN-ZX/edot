@@ -6,6 +6,8 @@ import 'package:imagebutton/imagebutton.dart';
 import 'taobaoTest/ui/page/home/search_goods_result_page.dart';
 import 'taobaoTest/ui/page/drawer/gzx_filter_goods_page.dart';
 import 'taobaoTest/main.dart';
+import 'videoTest/videoApp.dart';
+
 class exerciseFront extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -133,7 +135,7 @@ class exerciseBody extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (BuildContext context){
 //                            return GZXFilterGoodsPage();
-                            return SearchGoodsResultPage();
+                            return VideoApp();
                           }
                       ),
                     );
