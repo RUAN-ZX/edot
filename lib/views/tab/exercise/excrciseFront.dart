@@ -3,10 +3,12 @@ import 'package:edot/network/requestServer.dart';
 import 'package:dio/dio.dart';
 import 'listData.dart';
 import 'package:imagebutton/imagebutton.dart';
-import 'taobaoTest/ui/page/home/search_goods_result_page.dart';
-import 'taobaoTest/ui/page/drawer/gzx_filter_goods_page.dart';
-import 'taobaoTest/main.dart';
-import 'videoTest/videoApp.dart';
+//import 'video/search_goods_result_page.dart';
+import 'video/gzx_filter_goods_page.dart';
+//import 'taobaoTest/main.dart';
+
+import 'video/videoCardPlay.dart';
+import 'video/videoSelect.dart';
 
 class exerciseFront extends StatelessWidget {
   @override
@@ -135,7 +137,7 @@ class exerciseBody extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (BuildContext context){
 //                            return GZXFilterGoodsPage();
-                            return VideoApp();
+                            return blank();
                           }
                       ),
                     );

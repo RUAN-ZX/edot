@@ -26,7 +26,7 @@ class LoginWidgetState extends State<LoginWidget> {
                 padding: EdgeInsets.fromLTRB(80, 10, 80, 10),
                 child: ClipOval(
                   child: Image.asset(
-                    'asset/images/test.jpeg',
+                    'asset/images/user.jpeg',
                     fit: BoxFit.cover,
 //                      width: 30,
                   ),

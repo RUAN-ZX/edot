@@ -3,7 +3,8 @@ import 'package:edot/network/requestServer.dart';
 import 'package:dio/dio.dart';
 import 'listData.dart';
 import 'package:imagebutton/imagebutton.dart';
-import 'test.dart';
+import 'video/videoSelect.dart';
+
 class exerciseBack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
