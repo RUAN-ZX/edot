@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/edotV1.0.iml" filepath="$PROJECT_DIR$/.idea/edotV1.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/edot_v1_1.iml" filepath="$PROJECT_DIR$/edot_v1_1.iml" />
     </modules>
   </component>
 </project>

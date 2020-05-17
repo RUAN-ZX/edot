@@ -397,10 +397,10 @@ class blank extends StatefulWidget {
   }
 }
 
+
 class _blankState extends State<blank> {
   TargetPlatform _platform;
   VideoPlayerController _videoPlayerController1;
-  VideoPlayerController _videoPlayerController2;
   ChewieController _chewieController;
 
   @override
@@ -409,34 +409,34 @@ class _blankState extends State<blank> {
     _videoPlayerController1 =
       VideoPlayerController.network(
       'https://www.runoob.com/try/demo_source/mov_bbb.mp4');
-    _videoPlayerController2 =
-      VideoPlayerController.network(
-      'https://www.runoob.com/try/demo_source/mov_bbb.mp4');
     _chewieController = ChewieController(
-      videoPlayerController: _videoPlayerController1,
-      aspectRatio: 3 / 2,
-      autoPlay: true,
-      looping: true,
-      // Try playing around with some of these other options:
+        videoPlayerController: _videoPlayerController1,
+        aspectRatio: 3 / 2,
+        autoPlay: false,
+        looping: false,
+        // Try playing around with some of these other options:
 
-      // showControls: false,
-      // materialProgressColors: ChewieProgressColors(
-      //   playedColor: Colors.red,
-      //   handleColor: Colors.blue,
-      //   backgroundColor: Colors.grey,
-      //   bufferedColor: Colors.lightGreen,
-      // ),
-      // placeholder: Container(
-      //   color: Colors.grey,
-      // ),
-      // autoInitialize: true,
+        // showControls: false,
+        showControlsOnInitialize:true,
+//        isLive: true,
+        fullScreenByDefault: true,
+//        customControls: myWidget(),
+       materialProgressColors: ChewieProgressColors(
+         playedColor: Colors.black54,// 已经播放进度条
+         handleColor: Colors.blueGrey,
+         backgroundColor: Colors.grey,// 未加载进度条
+         bufferedColor: Colors.blueGrey,//已经加载进度条
+       ),
+       placeholder: Container(
+         color: Colors.black45,
+       ),
+       autoInitialize: true,
     );
   }
 
   @override
   void dispose() {
     _videoPlayerController1.dispose();
-    _videoPlayerController2.dispose();
     _chewieController.dispose();
     super.dispose();
   }
@@ -444,105 +444,94 @@ class _blankState extends State<blank> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: widget.title,
+//      title: widget.title,
       theme: ThemeData.light().copyWith(
         platform: _platform ?? Theme.of(context).platform,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
+//        appBar: AppBar(
+//          title: Text(widget.title),
+//        ),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Expanded(
-              child: Center(
-                child: Chewie(
-                  controller: _chewieController,
-                ),
-              ),
-            ),
-            FlatButton(
-              onPressed: () {
-                _chewieController.enterFullScreen();
-              },
-              child: Text('Fullscreen'),
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: FlatButton(
-                    onPressed: () {
-                      setState(() {
-                        _chewieController.dispose();
-                        _videoPlayerController2.pause();
-                        _videoPlayerController2.seekTo(Duration(seconds: 0));
-                        _chewieController = ChewieController(
-                          videoPlayerController: _videoPlayerController1,
-                          aspectRatio: 3 / 2,
-                          autoPlay: true,
-                          looping: true,
-                        );
-                      });
-                    },
-                    child: Padding(
-                      child: Text("Video 1"),
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: FlatButton(
-                    onPressed: () {
-                      setState(() {
-                        _chewieController.dispose();
-                        _videoPlayerController1.pause();
-                        _videoPlayerController1.seekTo(Duration(seconds: 0));
-                        _chewieController = ChewieController(
-                          videoPlayerController: _videoPlayerController2,
-                          aspectRatio: 3 / 2,
-                          autoPlay: true,
-                          looping: true,
-                        );
-                      });
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text("Error Video"),
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: FlatButton(
-                    onPressed: () {
-                      setState(() {
-                        _platform = TargetPlatform.android;
-                      });
-                    },
-                    child: Padding(
-                      child: Text("Android controls"),
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: FlatButton(
-                    onPressed: () {
-                      setState(() {
-                        _platform = TargetPlatform.iOS;
-                      });
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text("iOS controls"),
-                    ),
-                  ),
-                )
-              ],
-            )
+            Chewie(controller: _chewieController,),
+//            FlatButton(
+//              onPressed: () {
+//                _chewieController.enterFullScreen();
+//              },
+//              child: Text('Fullscreen'),
+//            ),
+//            Row(
+//              children: <Widget>[
+//                Expanded(
+//                  child: FlatButton(
+//                    onPressed: () {
+//                      if (mounted) {
+//                        setState(() {
+//                          _chewieController.dispose();
+//                          _videoPlayerController2.pause();
+//                          _videoPlayerController2.seekTo(Duration(seconds: 0));
+//                          _chewieController = ChewieController(
+//                            videoPlayerController: _videoPlayerController1,
+//                            aspectRatio: 3 / 2,
+//                            autoPlay: true,
+//                            looping: true,
+//                          );
+//                        });
+//                      }
+//                    },
+//                    child: Padding(
+//                      child: Text("Video 1"),
+//                      padding: EdgeInsets.symmetric(vertical: 16.0),
+//                    ),
+//                  ),
+//                ),
+//                Expanded(
+//                  child: FlatButton(
+//                    onPressed: () {
+//                      setState(() {
+//                        _chewieController.dispose();
+//                        _videoPlayerController1.pause();
+//                        _videoPlayerController1.seekTo(Duration(seconds: 0));
+//                        _chewieController = ChewieController(
+//                          videoPlayerController: _videoPlayerController2,
+//                          aspectRatio: 3 / 2,
+//                          autoPlay: true,
+//                          looping: true,
+//                        );
+//                      });
+//                    },
+//                    child: Padding(
+//                      padding: EdgeInsets.symmetric(vertical: 16.0),
+//                      child: Text("Error Video"),
+//                    ),
+//                  ),
+//                )
+//              ],
+//            ),
+
+
+
+//            Row(
+//              children: <Widget>[
+//                Expanded(
+//                  child: FlatButton(
+//                    onPressed: () {
+//                      if(mounted){
+//                        setState(() {
+//                          _platform = TargetPlatform.android;
+//                        });
+//                      }
+//                    },
+//                    child: Padding(
+//                      child: Text("Android controls"),
+//                      padding: EdgeInsets.symmetric(vertical: 16.0),
+//                    ),
+//                  ),
+//                ),
+//              ],
+//            )
           ],
         ),
       ),

@@ -1,4 +1,4 @@
-package com.example.edot;
+package com.example.edot_v1_1;
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity;
